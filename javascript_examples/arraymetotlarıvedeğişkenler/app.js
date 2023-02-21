@@ -36,7 +36,7 @@ console.log(sayilar3);
 
 console.log("===========================");
 
-let sayilar4 = [1, 5, 9, 15, 24, 36];
+let sayilar4 = [1, 5, 9, 15, 24, 36, "20"];
 console.log(sayilar4);
 
 // Splice
@@ -50,3 +50,23 @@ console.log("======Slice====="); //Slice orjinal arrayi değiştirmez
 console.log(sayilar4.slice(1, 3)); // substring gibi çalışır aradan veri çekmek için kullanılır ilk girilen index dahil son girilen index dahil değildir
 sayilar3 = sayilar4.slice(2);
 console.log(sayilar3);
+
+//sayılar 4 arayınden 15 ten buyuk olanları yeni bir arraye aktaralım
+let sayilar5 = sayilar4.filter((x) => x > 15);
+console.log("sayılar5");
+console.log(sayilar5);
+// çift== sadece değer kontrolu yapar
+// 3tane = ne yapar hem deger kontrolu hemde tür-type kontrolu yapar
+let id = sayilar4.find((x) => x == 20); //20 yi dondurur
+let id2 = sayilar4.find((x) => x === 20); // undfined donurur
+console.log(id);
+console.log(id2);
+// let sayilar4 = [1, 5, 9, 15, 24, 36, "20"];
+// sayılar 4 de herhangi bir elaman 24 den buyuk mudur
+let sonuc = sayilar4.some((x) => x > 24);
+console.log(sonuc);
+// sayılar 4 de her elamnın 5 den buyuk olup olmadıgını gösterelim
+let sonuc2 = sayilar4.every((x) => x > 0);
+console.log(sonuc2);
+let sayilar6 = [120, 5, 90, 15, 24, 26, 36];
+console.log(sayilar6.sort((a, b) => b - a));
