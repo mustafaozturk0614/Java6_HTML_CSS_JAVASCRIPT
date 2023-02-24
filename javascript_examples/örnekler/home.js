@@ -42,3 +42,46 @@ function clearUl() {
   filterButton.classList.remove("disabled");
   clearButton.classList.add("disabled");
 }
+
+let sayi = 0;
+let tablo = document.querySelector("#tablo");
+function addTable() {
+  let name = document.getElementById("name").value;
+  let surname = document.getElementById("surname").value;
+  let age = document.getElementById("age").value;
+  let password = document.getElementById("password").value;
+  let username = document.getElementById("username").value;
+  sayi++;
+  tablo.innerHTML += `<tr>
+  <th scope="row">${sayi}</th>
+  <td>${name}</td>
+  <td>${surname}</td>
+  <td>${username}</td>
+  <td>${age}</td>
+  <td>${password}</td>
+</tr> `;
+}
+
+let form = document.querySelector(".userform");
+
+function addTable2() {
+  let name = form.name.value;
+  let surname = form.surname.value;
+  let age = form.age.value;
+  let password = form.password.value;
+  let username = form.username.value;
+  sayi++;
+  tablo.innerHTML += `<tr>
+  <th scope="row">${sayi}</th>
+  <td>${name}</td>
+  <td>${surname}</td>
+  <td>${username}</td>
+  <td>${age}</td>
+  <td>${password}</td>
+</tr> `;
+}
+
+function removeTable() {
+  tablo.innerHTML = "";
+  sayi = 0;
+}

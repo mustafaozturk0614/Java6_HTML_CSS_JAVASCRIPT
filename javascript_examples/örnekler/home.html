@@ -33,7 +33,7 @@
     </div>
 
     <div class="container">
-        <form>
+        <form class="userform">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name">
@@ -55,8 +55,8 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-danger">Clear</button>
+            <button type="button" onclick="addTable2()" class="btn btn-primary">Submit</button>
+            <button type="button" onclick="removeTable()" class="btn btn-danger">Clear</button>
         </form>
 
         <table class="table">
@@ -70,15 +70,8 @@
                     <th scope="col">Password</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>50</td>
-                    <td>123a</td>
-                </tr>
+            <tbody id="tablo">
+
             </tbody>
         </table>
     </div>
