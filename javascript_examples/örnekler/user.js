@@ -85,8 +85,57 @@ function login() {
   let username = document.getElementById("myusername").value;
   let pasword = document.getElementById("mypassword").value;
   if (username === user.username && pasword === user.password) {
-    window.location.href = "/javascript_examples/%C3%B6rnekler/home.html";
+    setTimeout(getHomePage, 3000);
+    // setTimeout(()=>{
+    //   window.location.href = "/javascript_examples/%C3%B6rnekler/home.html";
+    // }, 3000);
   } else {
     alert("giriş basarısız");
   }
 }
+
+const getHomePage = () => {
+  window.location.href = "/javascript_examples/%C3%B6rnekler/home.html";
+};
+
+function login2() {
+  let form = document.querySelector("form");
+
+  console.log(form);
+  if (
+    form.username.value === user.username &&
+    form.password.value === user.password
+  ) {
+    alert("giriş başarılı");
+    // setTimeout(getHomePage, 2000);
+    // setTimeout(()=>{
+    //   window.location.href = "/javascript_examples/%C3%B6rnekler/home.html";
+    // }, 3000);
+  } else {
+    alert("giriş basarısız");
+  }
+}
+let form = document.querySelector("form");
+function login3(e) {
+  console.log(e.target);
+  e.preventDefault();
+  console.log(form);
+  if (
+    e.target.username.value === user.username &&
+    form.password.value === user.password
+  ) {
+    alert("giriş başarılı");
+    // setTimeout(getHomePage, 2000);
+    // setTimeout(()=>{
+    //   window.location.href = "/javascript_examples/%C3%B6rnekler/home.html";
+    // }, 3000);
+  } else {
+    alert("giriş basarısız");
+  }
+}
+
+let button = document.querySelector(".loginbutton");
+
+form.addEventListener("submit", login3);
+
+//button.addEventListener("click", login2);
