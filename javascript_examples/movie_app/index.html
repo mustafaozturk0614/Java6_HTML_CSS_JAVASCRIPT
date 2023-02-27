@@ -49,41 +49,15 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <input class="form-control me-2" id="inputSearch" type="search" onkeyup="printserach()"
+                            placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="button">Search</button>
                     </form>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- {
-        id: 1,
-        genres: [
-          {
-            id: 1,
-            name: "Drama",
-          },
-          {
-            id: 2,
-            name: "Science-Fiction",
-          },
-          {
-            id: 3,
-            name: "Thriller",
-          },
-        ],
-        language: "English",
-        image:
-          "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg",
-        name: "Under the Dome",
-        country: "United States",
-        rating: 6.5,
-        summary:
-          "<p><b>Under the Dome</b> is the story of a small town that is suddenly and inexplicably sealed off from the rest of the world by an enormous transparent dome. The town's inhabitants must deal with surviving the post-apocalyptic conditions while searching for answers about the dome, where it came from and if and when it will go away.</p>",
-        premiered: "2013-06-24",
-        url: "https://www.tvmaze.com/shows/1/under-the-dome",
-      }, -->
 
     <main class="mt-3">
         <section class="row container-fluid ">
@@ -98,22 +72,11 @@
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <form>
-                                <div class="d-flex justify-content-between">
-                                    <label>Anime</label>
-                                    <input type="checkbox" name="genre" value="Anime">
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <label>Drama</label>
-                                    <input type="checkbox" name="genre" value="Drama">
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <label>Music</label>
-                                    <input type="checkbox" name="genre" value="Music">
-                                </div>
+                            <form class="genreForm">
+
                             </form>
                             <div class="mt-2 d-flex justify-content-end">
-                                <button class="btn btn-danger">Filtrele</button>
+                                <button onclick="filterGenres()" class="btn btn-danger">Filtrele</button>
                             </div>
                         </div>
                     </div>
@@ -121,6 +84,7 @@
             </div>
 
             <div class="allmovies row col-9 d-flex flex-wrap justify-content-center">
+
 
             </div>
         </section>

@@ -5912,47 +5912,15 @@ let movies = [
     url: "https://www.tvmaze.com/shows/249/the-daily-show-with-jon-stewart",
   },
 ];
-{
-  /* <div class="card col-3 mx-2 my-2" style="width: 20rem;">
-<div>
-    <img src="https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"
-        class="card-img-top" alt="...">
-    <div class="card-body p-1">
-        <h5 class="card-title">Under the Dome</h5>
-
-        <p class="d-none"><b>Under the Dome</b> is the story of a small town that is suddenly and
-            inexplicably sealed off
-            from the rest of the world by an enormous transparent dome. The town's inhabitants must
-            deal
-            with surviving the post-apocalyptic conditions while searching for answers about the
-            dome,
-            where
-            it came from and if and when it will go away.</p>
-    </div>
-</div>
-
-<ul class="list-group list-group-flush">
-    <li class="list-group-item">English</li>
-    <li class="list-group-item">6.5</li>
-    <li class="list-group-item">2013-06-24</li>
-    <li class="list-group-item">United States</li>
-    <li class="list-group-item">
-        <span>Drama</span>
-        <span>Science-Fiction</span>
-        <span>Thriller</span>
-    </li>
-</ul>
-<div class="card-body">
-    <a href="https://www.tvmaze.com/shows/1/under-the-dome"
-        class="card-link">https://www.tvmaze.com/shows/1/under-the-dome</a>
-</div>
-</div> */
-}
 
 let movieDiv = document.querySelector(".allmovies");
+let page = 1;
+let countMovie = 9;
+let genres = [];
 
-function getAllMovies() {
-  movies.forEach((x) => {
+function getAllMovies(array) {
+  movieDiv.innerHTML = "";
+  array.forEach((x) => {
     movieDiv.innerHTML += `
     <div class="card col-3 mx-2 my-2" style="width: 20rem;">
       <div class="mainSum">
@@ -5979,6 +5947,15 @@ function getAllMovies() {
 </div>
 </div>   `;
   });
+
+  let button = `<button class="btn btn-outline-success" onclick="loadMore()"  type="button">Load More</button>`;
+
+  movieDiv.innerHTML += button;
+}
+function loadMore() {
+  page++;
+  let newcountMovie = countMovie * page;
+  getAllMovies(movies.slice(0, newcountMovie));
 }
 
 function printGenres(genres) {
@@ -5986,8 +5963,103 @@ function printGenres(genres) {
   genres.forEach((x) => {
     html += `<span class="badge rounded-pill text-bg-primary">${x.name}</span>`;
   });
-
   return html;
 }
 
-getAllMovies();
+getAllMovies(movies.slice(page - 1, countMovie));
+
+// filmlerdeki genrelerden bir liste yaratacağız tekrarlanmayan veriler tutacağım bir liste olacak
+// aynı genreye 2 kere eklemeyeceğim
+
+function getGenres() {
+  movies.forEach((x) => {
+    x.genres.map((y) => {
+      if (!checkGenre(y, genres)) {
+        genres.push(y.name);
+      }
+    });
+  });
+  console.log(genres);
+}
+
+function checkGenre(genre, array) {
+  let kontrol = false;
+  for (let index = 0; index < array.length; index++) {
+    if (array[index] == genre.name) {
+      kontrol = true;
+      break;
+    }
+  }
+  return kontrol;
+}
+
+function getGenres2() {
+  movies.forEach((x) => {
+    x.genres.forEach((y) => {
+      if (!genres.includes(y.name)) {
+        genres.push(y.name);
+      }
+    });
+  });
+}
+
+function getGenres3() {
+  let kategoriler = new Set();
+  movies.forEach((x) => {
+    x.genres.forEach((y) => {
+      kategoriler.add(y.name);
+    });
+  });
+}
+
+getGenres2();
+
+function printAllGenres(array) {
+  console.log(array);
+  let genreForm = document.querySelector(".genreForm");
+  array.forEach((x) => {
+    genreForm.innerHTML += `
+    <div class="d-flex justify-content-between">
+        <label>${x}</label>
+        <input type="checkbox" name="genre" value="${x}">
+    </div>
+    `;
+  });
+}
+
+printAllGenres(genres);
+
+function filterGenres() {
+  let genreForm = document.querySelector(".genreForm");
+  let filterlist = [];
+  let movieList = [];
+  // genreForm.genre.forEach((x) => console.log(x.value));
+  // genreForm.genre.forEach((x) => console.log(x.checked));
+  genreForm.genre.forEach((x) => {
+    if (x.checked) {
+      filterlist.push(x.value);
+    }
+  });
+
+  movieList = movies.filter((movie) => {
+    if (movie.genres.some((g) => filterlist.includes(g.name))) {
+      return true;
+    }
+  });
+  if (movieList.length == 0) {
+    movieList = movies;
+  }
+
+  getAllMovies(movieList);
+}
+
+function printserach() {
+  let movieList = [];
+  let inputSearch = document.querySelector("#inputSearch");
+  let text = inputSearch.value;
+
+  movieList = movies.filter((x) =>
+    x.name.toUpperCase().includes(text.toUpperCase())
+  );
+  getAllMovies(movieList);
+}
